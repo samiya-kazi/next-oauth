@@ -2,6 +2,7 @@ import express, { Express } from 'express';
 import config from './config';
 import cors, { CorsOptions } from 'cors';
 import sequelize from './models';
+import authRouter from './routers/auth.router';
 
 const app: Express = express();
 const corsOptions: CorsOptions = {
@@ -9,8 +10,8 @@ const corsOptions: CorsOptions = {
 }
 
 app.use(cors(corsOptions));
-
 app.use(express.json());
+app.use('/auth', authRouter);
 
 (async function bootstrap () {
   try {

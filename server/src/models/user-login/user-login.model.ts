@@ -9,7 +9,7 @@ interface UserLoginInstance extends Model<IUserLogin, UserLoginCreationAttribute
   updatedAt?: Date;
 }
 
-const UserLogin = sequelize.define<UserLoginInstance>('user', {
+const UserLogin = sequelize.define<UserLoginInstance>('user_login', {
   id: {
     allowNull: false,
     autoIncrement: true,
