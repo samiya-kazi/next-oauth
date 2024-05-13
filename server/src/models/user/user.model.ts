@@ -1,6 +1,7 @@
 import { Model, DataTypes, Optional } from 'sequelize';
 import { IUser } from '../../interfaces/user.interface';
 import sequelize from '..';
+import UserLogin from '../user-login/user-login.model';
 
 interface UserCreationAttributes extends Optional<IUser, 'id'> {};
 
@@ -20,7 +21,20 @@ const User = sequelize.define<UserInstance>('user', {
   name: {
     type: DataTypes.TEXT,
     allowNull: false,
+  },
+  email: {
+    type: DataTypes.TEXT,
+    allowNull: false,
   }
+})
+
+User.hasOne(UserLogin, {
+  sourceKey: 'id',
+  foreignKey: 'user_id',
+});
+
+UserLogin.belongsTo(User, {
+  foreignKey: 'user_id',
 })
 
 
